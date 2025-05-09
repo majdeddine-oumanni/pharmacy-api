@@ -1,11 +1,8 @@
 package com.pharmacy.api.controller;
-
-import com.pharmacy.api.entities.Produit;
+import com.pharmacy.api.entities.Product;
 import com.pharmacy.api.repository.ProductRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -16,7 +13,22 @@ public class ProductController {
         this.productRepository = productRepository;
     }
     @PostMapping("/product")
-    public Produit addProduct(@RequestBody Produit produit){
-        return productRepository.save(produit);
+    public Product addProduct(@RequestBody Product product){
+        return productRepository.save(product);
+    }
+
+    @GetMapping("/product")
+    public List<Product> getProducts(){
+        return productRepository.findAll();
+    }
+
+    @DeleteMapping("/product/{id}")
+    public void deleteProduct(@PathVariable Long id){
+        productRepository.deleteById(id);
+    }
+
+    @PutMapping("/product")
+    public Product updateProduct(@RequestBody Product product){
+        return productRepository.save(product);
     }
 }

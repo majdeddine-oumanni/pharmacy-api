@@ -12,11 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Produit {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    private long quantity;
 
     public Long getId() {
         return id;
@@ -58,7 +60,6 @@ public class Produit {
         this.description = description;
     }
 
-    private long quantity;
     private double price;
     private String description;
 }
